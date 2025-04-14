@@ -127,7 +127,7 @@ class RootFindingApp:
             fa = f(a)
             fb = f(b)
             
-            if fa * fb >= 0:
+            if fa * fb > 0:
                 messagebox.showerror("Помилка", f"Функція не змінює знак на інтервалі [{a}, {b}].\nf({a}) = {fa:.6f}, f({b}) = {fb:.6f}")
                 return
             

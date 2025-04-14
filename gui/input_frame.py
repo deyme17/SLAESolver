@@ -67,7 +67,7 @@ class InputFrame:
         equation_inner_frame.columnconfigure(1, weight=1)
         
         ttk.Label(equation_inner_frame, text="f(x) =").grid(column=0, row=0, padx=(0, 10), pady=5, sticky="w")
-        self.equation_var = tk.StringVar(value="x^3 - 2*x^2 - 4*x + 8")
+        self.equation_var = tk.StringVar(value="x^3 - 3*x^2 + x + 5")
         self.equation_entry = ttk.Entry(equation_inner_frame, width=40, textvariable=self.equation_var)
         self.equation_entry.grid(column=1, row=0, padx=0, pady=5, sticky="ew")
         ttk.Label(equation_inner_frame, text="= 0").grid(column=2, row=0, padx=(10, 0), pady=5, sticky="w")
@@ -88,7 +88,7 @@ class InputFrame:
         interval_input_frame.grid(column=0, row=1, padx=0, pady=0, sticky="w")
         
         ttk.Label(interval_input_frame, text="a =").grid(column=0, row=0, padx=(0, 5), pady=5, sticky="w")
-        self.a_var = tk.DoubleVar(value=0.0)
+        self.a_var = tk.DoubleVar(value=-4.0)
         self.a_entry = ttk.Entry(interval_input_frame, width=8, textvariable=self.a_var)
         self.a_entry.grid(column=1, row=0, padx=0, pady=5, sticky="w")
         
@@ -168,8 +168,8 @@ class InputFrame:
     
     def clear(self):
         """Clear all input fields"""
-        self.equation_var.set("x^3 - 2*x^2 - 4*x + 8")
-        self.a_var.set(0.0)
+        self.equation_var.set("x^3 - 3*x^2 + x + 5")
+        self.a_var.set(-4.0)
         self.b_var.set(4.0)
         self.tolerance_var.set("0.001")
         self.max_iter_var.set(100)

@@ -161,10 +161,15 @@ class GraphFrame:
         ax.semilogy(iterations, errors, 'ro-', linewidth=2, markersize=6, label=method_name)
 
         if len(iterations) > 1:
-            x_trend = np.linspace(0, max(iterations) * 1.1, 100)
-            p = np.polyfit(iterations[-min(3, len(iterations)):], np.log(errors[-min(3, len(iterations)):]), 1)
-            y_trend = np.exp(p[0] * x_trend + p[1])
-            ax.semilogy(x_trend, y_trend, 'b--', alpha=0.5, linewidth=1.5, label='Тренд збіжності')
+            try:
+                # Make sure errors are positive
+                valid_errors = [max(err, 1e-15) for err in errors[-min(3, len(iterations)):]]
+                x_trend = np.linspace(0, max(iterations) * 1.1, 100)
+                p = np.polyfit(iterations[-min(3, len(iterations)):], np.log(valid_errors), 1)
+                y_trend = np.exp(p[0] * x_trend + p[1])
+                ax.semilogy(x_trend, y_trend, 'b--', alpha=0.5, linewidth=1.5, label='Тренд збіжності')
+            except Exception as e:
+                print(f"Помилка побудови тренду збіржності: {e}")
         
         ax.set_title('Збіжність методу', fontsize=12, fontweight='bold')
         ax.set_xlabel('Ітерація', fontsize=10)

@@ -15,6 +15,26 @@ class BisectionMethod(RootFinder):
             Dictionary with results
         """
         self.history = []
+
+        fa = self.function(a)
+        fb = self.function(b)
+
+        if abs(fa) < self.tolerance:
+            return {
+                'root': a,
+                'iterations': 0,
+                'f_value': fa,
+                'tolerance': b - a,
+                'history': self.history
+            }
+        if abs(fb) < self.tolerance:
+            return {
+                'root': b,
+                'iterations': 0,
+                'f_value': fb,
+                'tolerance': b - a,
+                'history': self.history
+            }
         
         if not self.check_interval(a, b):
             raise ValueError(f"Function must have opposite signs at interval endpoints: f({a}) = {self.function(a)}, f({b}) = {self.function(b)}")

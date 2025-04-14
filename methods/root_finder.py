@@ -35,14 +35,18 @@ class RootFinder(ABC):
     def check_interval(self, a, b):
         """
         Check if the function changes sign in the interval [a, b].
-        
+
         Args:
             a: Left boundary of interval
             b: Right boundary of interval
-            
+
         Returns:
-            True if function changes sign, False otherwise
+            True if function changes sign or one of the endpoints is root
         """
         fa = self.function(a)
         fb = self.function(b)
+
+        if abs(fa) < self.tolerance or abs(fb) < self.tolerance:
+            return True
+
         return fa * fb < 0
