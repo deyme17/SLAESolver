@@ -1,5 +1,3 @@
-from methods.root_finder import RootFinder
-from methods.bisection_method import BisectionMethod
-from methods.chord_method import ChordMethod
-
-__all__ = ['RootFinder', 'BisectionMethod', 'ChordMethod']
+from methods.slae_solver import SLAESolver
+from methods.gauss_method import GaussMethod
+from methods.zeidel_method import ZeidelMethod
