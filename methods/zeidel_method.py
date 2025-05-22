@@ -7,6 +7,20 @@ class ZeidelMethod(SLAESolver):
     def solve(self):
         A, b = self.A, self.b
         n = len(b)
+
+        # zero check
+        for i in range(n):
+            if A[i][i] == 0:
+                raise ValueError(f"Елемент A[{i}][{i}] = 0. Метод Зейделя не може бути застосований.")
+
+        # diag dominant
+        for i in range(n):
+            diag = abs(A[i][i])
+            off_diag_sum = sum(abs(A[i][j]) for j in range(n) if j != i)
+            if diag <= off_diag_sum:
+                print("Матриця не є строго діагонально домінуючою — метод може не збігатися.")
+                break
+
         x = np.zeros(n)
         for k in range(self.max_iter):
             x_old = x.copy()
